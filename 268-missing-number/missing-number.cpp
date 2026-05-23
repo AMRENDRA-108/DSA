@@ -6,7 +6,7 @@ public:
         // array ke saare element ka sum 
         int actualSum = 0;
         for(int num:nums){// nums ke saare value pe jayega ek ek krke
-        // if 4 missing
+        // if 4 missing (0+1+2+3+5 ==11)
             actualSum = actualSum + num; // add all current value of num (0 + 11) = 11
 
         }
