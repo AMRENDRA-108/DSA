@@ -9,11 +9,11 @@ public:
             x /= 10;
             
             // 2. Check for overflow before multiplying by 10
-            // INT_MAX is 2147483647
+           
             if (reversed_num > INT_MAX / 10 || (reversed_num == INT_MAX / 10 && pop > 7)) {
                 return 0;
             }
-            // INT_MIN is -2147483648
+            
             if (reversed_num < INT_MIN / 10 || (reversed_num == INT_MIN / 10 && pop < -8)) {
                 return 0;
             }
