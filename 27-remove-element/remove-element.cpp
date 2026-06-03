@@ -3,9 +3,9 @@ public:
     int removeElement(vector<int>& nums, int val) {
         int k = 0; // This pointer tracks the position for the next valid element
         
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < nums.size(); i++) { 
             // If the current element is NOT the one we want to remove
-            if (nums[i] != val) {
+            if (nums[i] != val) { 
                 nums[k] = nums[i]; // Move it to the front
                 k++;               // Increment our valid element count
             }
