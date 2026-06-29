@@ -1,33 +1,41 @@
 class Solution {
 public:
     int countPrimes(int n) {
-        if (n <= 2) return 0; // 2 se chhote koi prime nahi hote
+        // Base Case: Agar n ki value 2 ya usse kam hai, 
+        // toh usse chhote koi prime numbers hote hi nahi hain (isliye return 0)
+        if (n <= 2) return 0; 
 
-        // Ek boolean array banayein jismein shuru mein sabko true (prime) maan rahe hain
+        // Ek 'isPrime' naam ka vector (array) banaya jiska size 'n' hai.
+        // Shuru mein hum maan ke chal rahe hain ki saare numbers prime hain (isliye 'true' set kiya)
         vector<bool> isPrime(n, true);
         
-        // 0 aur 1 prime nahi hain
+        // Humey pata hai ki 0 aur 1 prime nahi hote, toh unhe pehle hi 'false' kar diya
         isPrime[0] = isPrime[1] = false; 
         
-        // Sieve ka loop jo sqrt(n) tak chalega
+        // Loop chalayenge sqrt(n) tak. Code mein isse 'i * i < n' likhte hain taaki fast chale.
         for (int i = 2; i * i < n; i++) {
+            
+            // Agar 'i' ek prime number hai (yaani abhi tak true hai)...
             if (isPrime[i]) {
-                // Agar 'i' prime hai, toh uske saare multiples ko false kar do
-                // Hum i*i se shuru kar sakte hain kyunki usse chhote multiples pehle hi cover ho chuke honge
-                for (int j = i * i; j < n; j += i) {
-                    isPrime[j] = false;
+                
+                // ...toh uske aage ke saare multiples (tables) ko 'false' return karwange.
+                // Hum 'i * i' se shuru kar rahe hain kyunki chhote multiples pehle hi bade numbers se kat chuke honge.
+                for (int j = i * i; j < n; j = j + i) {
+                    isPrime[j] = false; // Yeh prime nahi ho sakta kyunki yeh 'i' se divide hota hai
                 }
             }
         }
         
-        // Ab true values ko count kar lete hain
+        // Ab humare paas final list taiyar hai. 
+        // Bas loop chalakar count karenge ki kitne numbers abhi bhi 'true' reh gaye hain.
         int count = 0;
         for (int i = 2; i < n; i++) {
             if (isPrime[i]) {
-                count++;
+                count++; // Agar true mila, toh counter ko 1 badha do
             }
         }
         
+        // Final answer return kar dange
         return count;
     }
 };
